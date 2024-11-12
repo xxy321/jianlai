@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>副本：落魄山</title>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-size: cover;
+      background-image: url(../static/luopo.jpg);
+      height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+  .container {
+      width: 70%; /* 容器宽度占浏览器窗口宽度的80%，可根据需求调整 */
+      height: 70vh; /* 容器高度占浏览器视口高度的80%，可根据需求调整 */
+      position: relative;
+      background-color: rgba(173, 216, 230, 0.5);
+      padding: 2%; /* 内边距使用百分比，占容器宽度/高度的2% */
+      border-radius: 10px;
+      text-align: center;
+      top: 50%; /* 距离顶部占浏览器视口高度的5%，可根据需求调整 */
+      left: 20%; /* 距离左侧占浏览器窗口宽度的10%，可根据需求调整 */
+      z-index: 1;
+      overflow: auto; /* 添加滚动条 */
+      overflow-y: auto; /* 确保可以滚动 */
+    }
+
+    /* 定义按钮容器样式 */
+.button-container {
+    position: relative;
+    display: inline-block;
+    z-index: 2;
+    width: 30%; /* 按钮容器宽度占父容器（假设是.container）宽度的30%，可根据实际情况调整，这里设置为能每行放3个左右 */
+    height: 20%; /* 按钮容器高度占父容器高度的20%，可根据实际情况调整 */
+    text-align: center; /* 水平居中 */
+    vertical-align: middle; /* 垂直居中 */
+    margin: 2% 1.5%; /* 上下外边距为父容器高度的2%，左右外边距为父容器宽度的1.5%，可根据需求调整间隔大小，这里设置适合每行3个的间隔 */
+    box-sizing: border-box; /* 确保设置的宽度包含边框和内边距，避免因内边距等因素导致布局错乱 */
+}
+
+/* 定义按钮背景图片样式 */
+.button-background-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* 定义按钮本身样式 */
+.my-button {
+    padding: 1% 2%; /* 内边距使用百分比，占按钮宽度/高度的1% - 2% */
+    margin-top: 4%; /* 上边距使用百分比，占按钮容器高度的2% */
+    background-color: transparent;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    z-index: 3; /* 确保按钮文字在最上层 */
+    display: inline-block; /* 使按钮为内联块元素，方便居中 */
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    font-size: 3vw; /* 字体大小使用vw单位，根据视口宽度自适应 */
+}
+
+/* 清除父容器（假设是.container）的浮动影响，确保按钮容器正常换行布局 */
+.container::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.big-button {
+      position: relative;
+      display: inline-block;
+      z-index: 2;
+      width: 20%;
+      height: 20%;
+      left: 45%;
+      margin-bottom: 5%;
+      text-align: center;
+      vertical-align: middle;
+      margin: 1% auto; /* 居中 */
+      box-sizing: border-box;
+      background-image: url(../static/continue_button_bg_image.png);
+      background-size: cover;
+      cursor: pointer;
+   }
+
+  .big-button span {
+      position: relative;
+      z-index: 3;
+      display: inline-block;
+      padding: 2% 4%;
+      margin: 1%;
+      background-color: transparent;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 2vw;
+   }
+
+  .character-info {
+      position: absolute;
+      top: 10%; /* 距离顶部占容器高度的10%，可根据需求调整 */
+      left: 5%; /* 距离左侧占容器宽度的5%，可根据需求调整 */
+      width: 10%;
+      height: 10%;
+      transform: scale(1.5); /* 调整这里的缩放比例 */
+    }
+
+    .character-avatar {
+      width: 100%;
+      height: 120%;
+      left: 12%;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .battle-value {
+      font-size: 150%;
+      position: relative;
+      top: 45%;
+      left: 40%;
+      color: rgb(0, 0, 0);
+      width: 100%;
+      height: 100%;
+    }
+
+  .avatar-bg-bottom {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 120%;
+      height: 150%;
+      z-index: -1;
+    }
+
+  .avatar-bg-top {
+      position: absolute;
+      left: 0;
+      top: 100%;
+      width: 100%;
+      height: 50%;
+      z-index: 1;
+    }
+
+    .battle-value-bg {
+      position: absolute;
+      top: 150%;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      z-index: -2;
+    }
+
+    .box-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+    }
+
+  .box-row {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+    }
+
+  .box-img {
+    width: 100%;
+    height: 100%;
+    }
+
+  .box-caption {
+      font-size: 100%;
+      text-align: center;
+      margin-top: -20%; /* 调整上边距使文字向上移动一点 */
+      width: 100%;
+      height: 100%;
+    }
+
+    .battle-section h1 {
+    text-align: left;
+    opacity: 0;
+     transition: opacity 0.5s ease-in-out;
+    }
+
+    .battle-section h1.show {
+     opacity: 1;
+ }
+
+    .new-component {
+      position: relative;
+      top: 10%; /* 距离顶部占容器高度的10%，可根据需求调整 */
+      left: 30%; /* 距离左侧占容器宽度的5%，可根据需求调整 */
+      display: inline-block;
+      text-align: left;
+      font-size: 200%;
+    }
+
+  .new-component p {
+      display: flex;
+      flex-wrap: wrap;
+      width: 280%;
+    }
+
+  .new-component p span {
+      display: inline-block;
+      width: 33%;
+    }
+
+    .big-button:active {
+     transform: scale(0.95);
+ }
+  </style>
+</head>
+
+<body>
+  <div class="character-info">
+    <img class="character-avatar" src="../static/character_avatar.png" alt="Character Avatar">
+    <img class="avatar-bg-bottom" src="../static/bg_charactar_avatar_bottom.png" alt="Bottom Background">
+    <img class="avatar-bg-top" src="../static/bg_charactar_avatar_top.png" alt="Top Background">
+    <div class="battle-value">1000</div>
+    <img class="battle-value-bg" src="../static/bg_battle_value.png" alt="Battle Value Background">
+    <div class="box-container">
+      <div class="box-row">
+        <div>
+          <img class="box-img" src="../static/cultivate_box.png" alt="Box 1">
+          <div class="box-caption">修炼</div>
+        </div>
+        <div>
+          <img class="box-img" src="../static/techniques_box.png" alt="Box 2">
+          <div class="box-caption">功法</div>
+        </div>
+      </div>
+      <div class="box-row">
+        <div>
+          <img class="box-img" src="..//static/dungeon_box.png" alt="Box 3">
+          <div class="box-caption">副本</div>
+        </div>
+        <div>
+         <img class="box-img" src="../static/backpack_box.png" alt="Box 4">
+          <div class="box-caption">背包</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="new-component">
+    <p>
+      <span>根骨:7</span>
+      <span>家境:5</span>
+      <span>悟性:2</span>
+      <span>机缘:2</span>
+      <span>魅力:3</span>
+      <span>体魄:1</span>
+    </p>
+  </div>
+  <div class="container">
+    <h1 style="font-size:50px;">落魄山</h1>
+    <div class="battle-section">
+      <h1 style="display:none;">战斗开始：你进入落魄山，这里的妖气很重</h1>
+      <h1 style="display:none;">第一回合：你发现了一只受伤的上古大妖，以你福气境三层的修为，瞬间出手，一击必杀</h1>
+      <h1 style="display:none;">第二回合：暂无内容</h1>
+      <h1 style="display:none;">第三回合：暂无内容</h1>
+      <h1 style="display:none;">第三回合：暂无内容</h1>
+      <h1 style="display:none;">第三回合：暂无内容</h1>
+      <h1 style="display:none;">第三回合：暂无内容</h1>
+      <h1 style="display:none;">第三回合：暂无内容</h1>
+      <h1 style="display:none;">第三回合：暂无内容</h1>
+      <h1 style="display:none;">第三回合：暂无内容</h1>
+      <h1 style="display:none;">第三回合：暂无内容</h1>
+      <h1 style="display:none;">第三回合：暂无内容</h1>
+      <h1 style="display:none;">第三回合：暂无内容</h1>
+      <h1 style="display:none;">第三回合：暂无内容</h1>
+      <h1 style="display:none;">第三回合：暂无内容</h1>
+
+      <h1 style="display:none;">第三回合：暂无内容</h1>
+      <h1 style="display:none;">第三回合：暂无内容</h1>
+      <h1 style="display:none;">第三回合：暂无内容</h1>
+
+      <h1 style="display:none;">第三回合：暂无内容</h1>
+      <a id="end-of-content" href="#end-of-content" style="position: absolute; bottom: 0;"></a>
+    </div>
+  </div>
+  <div class="big-button">
+    <span>继续</span>
+  </div>
+  <img class="top-right-image" src="../static/return_image.png" alt="Top Right Image" style="position: absolute; top: 0; right: 0;">
+  <img class="bottom-right-image" src="../static/setup_image.png" alt="Bottom Right Image" style="position: absolute; bottom: 0; right: 0;">
+  <script>
+    document.querySelector('.big-button').addEventListener('click', function () {
+        const battleSection = document.querySelector('.battle-section');
+        
+        // 获取当前隐藏的 h1 元素并显示
+        let hiddenElements = battleSection.querySelectorAll('h1[style*="display:none;"]');
+        if (hiddenElements.length > 0) {
+          // 显示第一个隐藏的 h1 元素
+          hiddenElements[0].style.display = 'block';
+          hiddenElements[0].classList.add('show');
+          
+          // 模拟点击锚点，使页面滚动到该位置
+          setTimeout(() => {
+            const anchor = document.getElementById('end-of-content');
+            if (anchor) {
+              anchor.click();  // 模拟点击锚点，触发滚动
+            }
+          }, 100);  // 小延时确保内容已更新后再触发滚动
+        }
+      });
+
+
+    document.querySelector('.top-right-image').addEventListener('click', function() {
+       history.back();
+       history.back();
+    });
+  </script>
+</body>
+
+</html>
